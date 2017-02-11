@@ -37587,7 +37587,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var ROOT_URL = location.host === 'localhost:3000' ? 'http://localhost:3000' : 'https://fathomless-inlet-58533.herokuapp.com/';
+	var ROOT_URL = location.host === 'localhost:3000' ? 'http://localhost:3000' : 'https://fathomless-inlet-58533.herokuapp.com';
 
 	//For testing
 	//const ROOT_URL = 'http://localhost:3000';
