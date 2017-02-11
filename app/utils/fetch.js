@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ROOT_URL = location.host === 'localhost:3000' ? 'http://localhost:3000' : 'https://infinite-coast-35847.herokuapp.com';
+const ROOT_URL = location.host === 'localhost:3000' ? 'http://localhost:3000' : 'https://fathomless-inlet-58533.herokuapp.com/';
 
 //For testing
 //const ROOT_URL = 'http://localhost:3000';
