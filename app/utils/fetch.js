@@ -88,5 +88,37 @@ export default {
             .catch(err => {
                 console.log('err', err)
             });
+    },
+
+    getWorkers(token, callback){
+        axios.post(`${ROOT_URL}/get_workers`, {token})
+            .then(response => {
+                callback(response);
+            })
+            .catch(err => {
+                console.log('err', err)
+            });
+    },
+
+    addWorker (token, worker, callback){
+        axios.post(`${ROOT_URL}/add_worker`, {token, worker})
+            .then(response => {
+                callback(response.data);
+            })
+            .catch(err => {
+                console.log('err', err)
+            });
+    },
+
+    editWorker (workerId, worker){
+        axios.post(`${ROOT_URL}/edit_worker`, {workerId, worker})
+            .catch(err => { console.log('err', err) });
+    },
+
+    removeWorker(token, worker){
+        axios.post(`${ROOT_URL}/remove_worker`, {token, worker})
+            .catch(err => {
+                console.log('err', err)
+            });
     }
 };

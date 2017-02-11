@@ -33,7 +33,11 @@ export default {
         "addClient" : "Add client",
         "searchClient" : "Search client",
         "editClient" : "Edit client",
-        "clientSML" : "client"
+        "clientSML" : "client",
+        "addWorker" : "Add worker",
+        "searchWorker" : "Search worker",
+        "editWorker" : "Edit worker",
+        "workerSML" : "worker"
     },
     ru:
     {
@@ -69,6 +73,10 @@ export default {
         "addClient" : "Добавить заказчика",
         "searchClient" : "Поиск заказчика",
         "editClient" : "Редактировать заказчика",
-        "clientSML" : "заказчика"
+        "clientSML" : "заказчика",
+        "addWorker" : "Добавить работника",
+        "searchWorker" : "Поиск работника",
+        "editWorker" : "Редактировать работника",
+        "workerSML" : "работника"
     }
 }

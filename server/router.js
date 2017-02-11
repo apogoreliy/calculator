@@ -94,4 +94,38 @@ module.exports = (app) =>{
             console.error('The promise was rejected', err, err.stack);
         });
     });
+
+    app.post('/get_workers', (req, res) => {
+        DB.getWorkers(req.body.token)
+            .then(function(items) {
+                res.json(items);
+            })
+            .catch(function(err) {
+                console.error('The promise was rejected', err, err.stack);
+            });
+    });
+
+    app.post('/add_worker', (req, res) => {
+        DB.addWorker(req.body.token, req.body.worker)
+            .then(function(item) {
+                res.json(item);
+            })
+            .catch(function(err) {
+                console.error('The promise was rejected', err, err.stack);
+            });
+    });
+
+    app.post('/edit_worker', (req) => {
+        DB.editWorker(req.body.workerId, req.body.worker)
+            .catch(function(err) {
+                console.error('The promise was rejected', err, err.stack);
+            });
+    });
+
+    app.post('/remove_worker', (req) => {
+        DB.removeWorker(req.body.token, req.body.worker)
+            .catch(function(err) {
+                console.error('The promise was rejected', err, err.stack);
+            });
+    });
 };

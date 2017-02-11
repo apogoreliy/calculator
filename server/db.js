@@ -205,4 +205,67 @@ module.exports = {
             });
         });
     },
+
+    getWorkers: function(token, filter){
+        const that = this;
+        return new Promise(function(resolve, reject) {
+            that.connection().then(function(db) {
+                let userId = that.getUserByToken(token)['id'];
+                let search = filter ? {userId, name: { $regex : `${filter}`, $options: 'i'}} : {userId};
+
+                db.collection('workers').find(search, {userId:0}).toArray(function(err, items) {
+                    if(err) {
+                        reject(err)
+                    }
+                    else{
+                        let workers = [];
+                        for(let i in items){
+                            items[i].worker._id = items[i]._id;
+                            workers.push(items[i].worker);
+                        }
+                        resolve(workers);
+                    }
+                });
+            });
+        });
+    },
+
+    addWorker: function(token, worker){
+        const that = this;
+        return new Promise(function(resolve, reject) {
+            that.connection().then(function(db) {
+                let userId = that.getUserByToken(token)['id'];
+                db.collection('workers').insertOne(
+                    {worker, userId},
+                    function(err, item) {
+                        if(err) {reject(item)}
+                        else{
+                            worker._id = item.ops[0]._id;
+                            resolve({worker});
+                        }
+                    }
+                );
+            });
+        });
+    },
+
+    editWorker: function(workerId, worker){
+        const that = this;
+        return new Promise(function(resolve, reject) {
+            that.connection().then(function(db) {
+                db.collection('workers').updateOne({_id : ObjectID(workerId)}, {$set: {worker}}, function(err) {if(err) reject(err);});
+            });
+        });
+    },
+
+    removeWorker: function(token, worker){
+        const that = this;
+        return new Promise(function(resolve, reject) {
+            that.connection().then(function(db) {
+                db.collection('workers').deleteOne({_id : ObjectID(worker)}, function(err) {
+                    if(err) reject(err);
+                });
+            });
+        });
+    },
 };

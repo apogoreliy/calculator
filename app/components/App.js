@@ -7,6 +7,7 @@ class App extends Component {
     componentDidMount() {
         this.props.getPlaces();
         this.props.getClients();
+        this.props.getWorkers();
         this.props.getIntlMessages();
     }
 
@@ -27,6 +28,7 @@ class App extends Component {
 }
 
 App.propTypes = {
+    getWorkers : PropTypes.func,
     getPlaces: PropTypes.func,
     getClients : PropTypes.func,
     showAuthModal : PropTypes.bool,
