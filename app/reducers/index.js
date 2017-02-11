@@ -4,6 +4,7 @@ import intl from './intl';
 import places from './places';
 import clients from './clients';
 import workers from './workers';
+import jobs from './jobs';
 
 import effects from './effects';
 
@@ -12,5 +13,6 @@ export default combineReducers({
     intl,
     places,
     clients,
-    workers
+    workers,
+    jobs
 });

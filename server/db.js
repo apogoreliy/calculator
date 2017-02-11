@@ -268,4 +268,67 @@ module.exports = {
             });
         });
     },
+
+    getJobs: function(token, filter){
+        const that = this;
+        return new Promise(function(resolve, reject) {
+            that.connection().then(function(db) {
+                let userId = that.getUserByToken(token)['id'];
+                let search = filter ? {userId, name: { $regex : `${filter}`, $options: 'i'}} : {userId};
+
+                db.collection('jobs').find(search, {userId:0}).toArray(function(err, items) {
+                    if(err) {
+                        reject(err)
+                    }
+                    else{
+                        let jobs = [];
+                        for(let i in items){
+                            items[i].job._id = items[i]._id;
+                            jobs.push(items[i].job);
+                        }
+                        resolve(jobs);
+                    }
+                });
+            });
+        });
+    },
+
+    addJob: function(token, job){
+        const that = this;
+        return new Promise(function(resolve, reject) {
+            that.connection().then(function(db) {
+                let userId = that.getUserByToken(token)['id'];
+                db.collection('jobs').insertOne(
+                    {job, userId},
+                    function(err, item) {
+                        if(err) {reject(item)}
+                        else{
+                            job._id = item.ops[0]._id;
+                            resolve({job});
+                        }
+                    }
+                );
+            });
+        });
+    },
+
+    editJob: function(jobId, job){
+        const that = this;
+        return new Promise(function(resolve, reject) {
+            that.connection().then(function(db) {
+                db.collection('jobs').updateOne({_id : ObjectID(jobId)}, {$set: {job}}, function(err) {if(err) reject(err);});
+            });
+        });
+    },
+
+    removeJob: function(token, job){
+        const that = this;
+        return new Promise(function(resolve, reject) {
+            that.connection().then(function(db) {
+                db.collection('jobs').deleteOne({_id : ObjectID(job)}, function(err) {
+                    if(err) reject(err);
+                });
+            });
+        });
+    },
 };

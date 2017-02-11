@@ -40,16 +40,16 @@ export const HANDLE_MODAL_ADD_WORKER = 'HANDLE_MODAL_ADD_WORKER';
 export const HANDLE_MODAL_EDIT_WORKER = 'HANDLE_MODAL_EDIT_WORKER';
 export const HANDLE_MODAL_REMOVE_WORKER = 'HANDLE_MODAL_REMOVE_WORKER';
 
+// jobs
+export const GET_JOBS = 'GET_JOBS';
+export const ADD_JOB = 'ADD_JOB';
+export const EDIT_JOB = 'EDIT_JOB';
+export const REMOVE_JOB = 'REMOVE_JOB';
+export const HANDLE_MODAL_ADD_JOB = 'HANDLE_MODAL_ADD_JOB';
+export const HANDLE_MODAL_EDIT_JOB = 'HANDLE_MODAL_EDIT_JOB';
+export const HANDLE_MODAL_REMOVE_JOB = 'HANDLE_MODAL_REMOVE_JOB';
 
 // types
-export const GET_TYPES = 'getTypes';
-export const ADD_TYPE = 'addType';
-export const EDIT_TYPE = 'editType';
-export const REMOVE_TYPE = 'removeType';
-export const CHECK_DOUBLE_TYPE = 'checkDoubleType';
-export const HANDLE_MODAL_ADD_TYPE  = 'handleModalAddType';
-export const HANDLE_MODAL_EDIT_TYPE = 'handleModalEditType';
-export const HANDLE_MODAL_REMOVE_TYPE = 'handleModalRemoveType';
 export const UPDATE_TYPE_OF_EFFECTS = 'updateTypeOfEffects';
 export const SEARCH_FILTER_TYPE = 'searchFilterType';
 

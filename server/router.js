@@ -128,4 +128,38 @@ module.exports = (app) =>{
                 console.error('The promise was rejected', err, err.stack);
             });
     });
+
+    app.post('/get_jobs', (req, res) => {
+        DB.getJobs(req.body.token)
+            .then(function(items) {
+                res.json(items);
+            })
+            .catch(function(err) {
+                console.error('The promise was rejected', err, err.stack);
+            });
+    });
+
+    app.post('/add_job', (req, res) => {
+        DB.addJob(req.body.token, req.body.job)
+            .then(function(item) {
+                res.json(item);
+            })
+            .catch(function(err) {
+                console.error('The promise was rejected', err, err.stack);
+            });
+    });
+
+    app.post('/edit_job', (req) => {
+        DB.editJob(req.body.jobId, req.body.job)
+            .catch(function(err) {
+                console.error('The promise was rejected', err, err.stack);
+            });
+    });
+
+    app.post('/remove_job', (req) => {
+        DB.removeJob(req.body.token, req.body.job)
+            .catch(function(err) {
+                console.error('The promise was rejected', err, err.stack);
+            });
+    });
 };

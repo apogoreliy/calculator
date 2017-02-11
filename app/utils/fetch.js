@@ -120,5 +120,37 @@ export default {
             .catch(err => {
                 console.log('err', err)
             });
+    },
+
+    getJobs(token, callback){
+        axios.post(`${ROOT_URL}/get_jobs`, {token})
+            .then(response => {
+                callback(response);
+            })
+            .catch(err => {
+                console.log('err', err)
+            });
+    },
+
+    addJob (token, job, callback){
+        axios.post(`${ROOT_URL}/add_job`, {token, job})
+            .then(response => {
+                callback(response.data);
+            })
+            .catch(err => {
+                console.log('err', err)
+            });
+    },
+
+    editJob (jobId, job){
+        axios.post(`${ROOT_URL}/edit_job`, {jobId, job})
+            .catch(err => { console.log('err', err) });
+    },
+
+    removeJob(token, job){
+        axios.post(`${ROOT_URL}/remove_job`, {token, job})
+            .catch(err => {
+                console.log('err', err)
+            });
     }
 };

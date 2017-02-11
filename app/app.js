@@ -13,7 +13,7 @@ import RequireAuth from './containers/RequireAuth';
 import CheckAuth from './containers/CheckAuth';
 
 import CostsPage from './components/costs/CostsPage';
-import JobsPage from './components/jobs/JobsPage';
+import HandleJobsPage from './containers/HandleJobsPage';
 import HandlePlacesPage from './containers/HandlePlacesPage';
 import HandleWorkersPage from './containers/HandleWorkersPage';
 import HandleClientsPage from './containers/HandleClientsPage';
@@ -38,7 +38,7 @@ render(
                 <Route path="/" component={CheckAuth(HandleApp)}>
                     <IndexRoute component={WelcomePage} />
                     <Route path="costs" component={RequireAuth(CostsPage)} />
-                    <Route path="jobs" component={RequireAuth(JobsPage)} />
+                    <Route path="jobs" component={RequireAuth(HandleJobsPage)} />
                     <Route path="places" component={RequireAuth(HandlePlacesPage)} />
                     <Route path="workers" component={RequireAuth(HandleWorkersPage)} />
                     <Route path="clients" component={RequireAuth(HandleClientsPage)} />

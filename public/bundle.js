@@ -95,9 +95,9 @@
 
 	var _CostsPage2 = _interopRequireDefault(_CostsPage);
 
-	var _JobsPage = __webpack_require__(404);
+	var _HandleJobsPage = __webpack_require__(667);
 
-	var _JobsPage2 = _interopRequireDefault(_JobsPage);
+	var _HandleJobsPage2 = _interopRequireDefault(_HandleJobsPage);
 
 	var _HandlePlacesPage = __webpack_require__(405);
 
@@ -140,7 +140,7 @@
 	                { path: '/', component: (0, _CheckAuth2.default)(_HandleApp2.default) },
 	                _react2.default.createElement(_reactRouter.IndexRoute, { component: _WelcomePage2.default }),
 	                _react2.default.createElement(_reactRouter.Route, { path: 'costs', component: (0, _RequireAuth2.default)(_CostsPage2.default) }),
-	                _react2.default.createElement(_reactRouter.Route, { path: 'jobs', component: (0, _RequireAuth2.default)(_JobsPage2.default) }),
+	                _react2.default.createElement(_reactRouter.Route, { path: 'jobs', component: (0, _RequireAuth2.default)(_HandleJobsPage2.default) }),
 	                _react2.default.createElement(_reactRouter.Route, { path: 'places', component: (0, _RequireAuth2.default)(_HandlePlacesPage2.default) }),
 	                _react2.default.createElement(_reactRouter.Route, { path: 'workers', component: (0, _RequireAuth2.default)(_HandleWorkersPage2.default) }),
 	                _react2.default.createElement(_reactRouter.Route, { path: 'clients', component: (0, _RequireAuth2.default)(_HandleClientsPage2.default) })
@@ -33264,6 +33264,10 @@
 
 	var _workers2 = _interopRequireDefault(_workers);
 
+	var _jobs = __webpack_require__(669);
+
+	var _jobs2 = _interopRequireDefault(_jobs);
+
 	var _effects = __webpack_require__(301);
 
 	var _effects2 = _interopRequireDefault(_effects);
@@ -33275,7 +33279,8 @@
 	    intl: _intl2.default,
 	    places: _places2.default,
 	    clients: _clients2.default,
-	    workers: _workers2.default
+	    workers: _workers2.default,
+	    jobs: _jobs2.default
 	});
 
 /***/ },
@@ -33375,15 +33380,16 @@
 	var HANDLE_MODAL_EDIT_WORKER = exports.HANDLE_MODAL_EDIT_WORKER = 'HANDLE_MODAL_EDIT_WORKER';
 	var HANDLE_MODAL_REMOVE_WORKER = exports.HANDLE_MODAL_REMOVE_WORKER = 'HANDLE_MODAL_REMOVE_WORKER';
 
+	// jobs
+	var GET_JOBS = exports.GET_JOBS = 'GET_JOBS';
+	var ADD_JOB = exports.ADD_JOB = 'ADD_JOB';
+	var EDIT_JOB = exports.EDIT_JOB = 'EDIT_JOB';
+	var REMOVE_JOB = exports.REMOVE_JOB = 'REMOVE_JOB';
+	var HANDLE_MODAL_ADD_JOB = exports.HANDLE_MODAL_ADD_JOB = 'HANDLE_MODAL_ADD_JOB';
+	var HANDLE_MODAL_EDIT_JOB = exports.HANDLE_MODAL_EDIT_JOB = 'HANDLE_MODAL_EDIT_JOB';
+	var HANDLE_MODAL_REMOVE_JOB = exports.HANDLE_MODAL_REMOVE_JOB = 'HANDLE_MODAL_REMOVE_JOB';
+
 	// types
-	var GET_TYPES = exports.GET_TYPES = 'getTypes';
-	var ADD_TYPE = exports.ADD_TYPE = 'addType';
-	var EDIT_TYPE = exports.EDIT_TYPE = 'editType';
-	var REMOVE_TYPE = exports.REMOVE_TYPE = 'removeType';
-	var CHECK_DOUBLE_TYPE = exports.CHECK_DOUBLE_TYPE = 'checkDoubleType';
-	var HANDLE_MODAL_ADD_TYPE = exports.HANDLE_MODAL_ADD_TYPE = 'handleModalAddType';
-	var HANDLE_MODAL_EDIT_TYPE = exports.HANDLE_MODAL_EDIT_TYPE = 'handleModalEditType';
-	var HANDLE_MODAL_REMOVE_TYPE = exports.HANDLE_MODAL_REMOVE_TYPE = 'handleModalRemoveType';
 	var UPDATE_TYPE_OF_EFFECTS = exports.UPDATE_TYPE_OF_EFFECTS = 'updateTypeOfEffects';
 	var SEARCH_FILTER_TYPE = exports.SEARCH_FILTER_TYPE = 'searchFilterType';
 
@@ -33481,7 +33487,14 @@
 	        "addWorker": "Add worker",
 	        "searchWorker": "Search worker",
 	        "editWorker": "Edit worker",
-	        "workerSML": "worker"
+	        "workerSML": "worker",
+	        "addJob": "Add job",
+	        "searchJob": "Search job",
+	        "editJob": "Edit job",
+	        "jobSML": "job",
+	        "title": "Title",
+	        "unit": "Unit",
+	        "price": "Price"
 	    },
 	    ru: {
 	        "costs": "Расходы",
@@ -33520,7 +33533,14 @@
 	        "addWorker": "Добавить работника",
 	        "searchWorker": "Поиск работника",
 	        "editWorker": "Редактировать работника",
-	        "workerSML": "работника"
+	        "workerSML": "работника",
+	        "addJob": "Добавить деятельность",
+	        "searchJob": "Искать деятельность",
+	        "editJob": "Редактировать деятельность",
+	        "jobSML": "деятельность",
+	        "title": "Название",
+	        "unit": "Единица измерения",
+	        "price": "Стоимость"
 	    }
 	};
 
@@ -33921,6 +33941,8 @@
 
 	var _workers = __webpack_require__(398);
 
+	var _jobs = __webpack_require__(668);
+
 	var _intl = __webpack_require__(399);
 
 	var _auth2 = __webpack_require__(396);
@@ -33941,6 +33963,9 @@
 
 	var mapDispactchToProps = function mapDispactchToProps(dispatch) {
 	    return {
+	        getJobs: function getJobs() {
+	            dispatch((0, _jobs.getJobs)());
+	        },
 	        getWorkers: function getWorkers() {
 	            dispatch((0, _workers.getWorkers)());
 	        },
@@ -34024,6 +34049,7 @@
 	            this.props.getPlaces();
 	            this.props.getClients();
 	            this.props.getWorkers();
+	            this.props.getJobs();
 	            this.props.getIntlMessages();
 	        }
 	    }, {
@@ -34059,6 +34085,8 @@
 	}(_react.Component);
 
 	App.propTypes = {
+	    getIntlMessages: _react.PropTypes.func,
+	    getJobs: _react.PropTypes.func,
 	    getWorkers: _react.PropTypes.func,
 	    getPlaces: _react.PropTypes.func,
 	    getClients: _react.PropTypes.func,
@@ -37600,6 +37628,30 @@
 	        _axios2.default.post(ROOT_URL + '/remove_worker', { token: token, worker: worker }).catch(function (err) {
 	            console.log('err', err);
 	        });
+	    },
+	    getJobs: function getJobs(token, callback) {
+	        _axios2.default.post(ROOT_URL + '/get_jobs', { token: token }).then(function (response) {
+	            callback(response);
+	        }).catch(function (err) {
+	            console.log('err', err);
+	        });
+	    },
+	    addJob: function addJob(token, job, callback) {
+	        _axios2.default.post(ROOT_URL + '/add_job', { token: token, job: job }).then(function (response) {
+	            callback(response.data);
+	        }).catch(function (err) {
+	            console.log('err', err);
+	        });
+	    },
+	    editJob: function editJob(jobId, job) {
+	        _axios2.default.post(ROOT_URL + '/edit_job', { jobId: jobId, job: job }).catch(function (err) {
+	            console.log('err', err);
+	        });
+	    },
+	    removeJob: function removeJob(token, job) {
+	        _axios2.default.post(ROOT_URL + '/remove_job', { token: token, job: job }).catch(function (err) {
+	            console.log('err', err);
+	        });
 	    }
 	};
 
@@ -39301,7 +39353,7 @@
 /* 404 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -39311,21 +39363,67 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _Button = __webpack_require__(307);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
+	var _JobList = __webpack_require__(664);
+
+	var _JobList2 = _interopRequireDefault(_JobList);
+
+	var _ModalRemoveItem = __webpack_require__(409);
+
+	var _ModalRemoveItem2 = _interopRequireDefault(_ModalRemoveItem);
+
+	var _ModalAddEditJob = __webpack_require__(666);
+
+	var _ModalAddEditJob2 = _interopRequireDefault(_ModalAddEditJob);
+
+	var _SearchFilter = __webpack_require__(523);
+
+	var _SearchFilter2 = _interopRequireDefault(_SearchFilter);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Jobs = function Jobs() {
+	var JobsPage = function JobsPage(props) {
 	    return _react2.default.createElement(
-	        "div",
-	        { className: "container" },
+	        'div',
+	        { className: 'container' },
 	        _react2.default.createElement(
-	            "p",
-	            null,
-	            "Jobs!!!"
-	        )
+	            'form',
+	            { className: 'form-inline' },
+	            _react2.default.createElement(_Button2.default, { classSet: 'btn-primary', handleClick: props.openModalAddJob, text: props.intlMessages['addJob'], icon: 'fa-plus-circle' }),
+	            _react2.default.createElement(_SearchFilter2.default, { onChange: props.searchJob, placeholderText: props.intlMessages['searchJob'] })
+	        ),
+	        _react2.default.createElement(_JobList2.default, {
+	            intlMessages: props.intlMessages,
+	            jobs: props.jobs,
+	            openModalEditItem: props.openModalEditJob,
+	            openModalRemoveItem: props.openModalRemoveJob }),
+	        props.isModalAddJobOpen && _react2.default.createElement(_ModalAddEditJob2.default, {
+	            header: props.intlMessages['addJob'],
+	            handleItem: function handleItem(initialJob, job) {
+	                return props.addJob(job);
+	            },
+	            closeModal: props.closeModalAddJob,
+	            intlMessages: props.intlMessages,
+	            item: { price: '', unit: '', date: new Date(), name: '', _id: 0, description: '' } }),
+	        props.isModalEditJobOpen && _react2.default.createElement(_ModalAddEditJob2.default, {
+	            handleItem: props.editJob,
+	            header: props.intlMessages['editJob'],
+	            closeModal: props.closeModalEditJob,
+	            intlMessages: props.intlMessages,
+	            item: props.job }),
+	        props.isModalRemoveJobOpen && _react2.default.createElement(_ModalRemoveItem2.default, {
+	            item: props.job,
+	            type: props.intlMessages['jobSML'],
+	            intlMessages: props.intlMessages,
+	            removeItem: props.removeJob,
+	            closeModal: props.closeModalRemoveJob })
 	    );
 	};
 
-	exports.default = Jobs;
+	exports.default = JobsPage;
 
 /***/ },
 /* 405 */
@@ -59257,6 +59355,604 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 663 */,
+/* 664 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Job = __webpack_require__(665);
+
+	var _Job2 = _interopRequireDefault(_Job);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function (_ref) {
+	    var jobs = _ref.jobs,
+	        intlMessages = _ref.intlMessages,
+	        openModalEditItem = _ref.openModalEditItem,
+	        openModalRemoveItem = _ref.openModalRemoveItem;
+	    return _react2.default.createElement(
+	        'div',
+	        null,
+	        jobs && jobs.map(function (item) {
+	            return _react2.default.createElement(_Job2.default, { key: item.name + item._id, item: item, intlMessages: intlMessages,
+	                openModalEditItem: openModalEditItem, openModalRemoveItem: openModalRemoveItem });
+	        })
+	    );
+	};
+
+/***/ },
+/* 665 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactIntl = __webpack_require__(271);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function (_ref) {
+	    var intlMessages = _ref.intlMessages,
+	        item = _ref.item,
+	        openModalEditItem = _ref.openModalEditItem,
+	        openModalRemoveItem = _ref.openModalRemoveItem;
+	    return _react2.default.createElement(
+	        'div',
+	        { className: 'list-row view-item  row-lg' },
+	        _react2.default.createElement('div', { className: 'list-column-left' }),
+	        _react2.default.createElement(
+	            'div',
+	            { className: 'list-column-right' },
+	            _react2.default.createElement(
+	                'div',
+	                { className: '' },
+	                _react2.default.createElement('span', { className: 'btn btn-default btn-margin-left fa fa-pencil', onClick: function onClick() {
+	                        return openModalEditItem(item);
+	                    } }),
+	                _react2.default.createElement('span', { className: 'btn btn-default btn-margin-left fa fa-trash-o', onClick: function onClick() {
+	                        return openModalRemoveItem(item);
+	                    } })
+	            )
+	        ),
+	        _react2.default.createElement(
+	            'div',
+	            { className: 'list-column-middle' },
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'list-meta' },
+	                _react2.default.createElement(
+	                    'span',
+	                    { title: intlMessages['date'] },
+	                    _react2.default.createElement('span', { className: 'fa fa-calendar' }),
+	                    ' ',
+	                    _react2.default.createElement(_reactIntl.FormattedDate, { value: item.date })
+	                ),
+	                _react2.default.createElement(
+	                    'span',
+	                    { title: intlMessages['price'] },
+	                    _react2.default.createElement(
+	                        'span',
+	                        { className: 'fa fa-usd' },
+	                        ' ',
+	                        item.price
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'span',
+	                    { title: intlMessages['unit'] },
+	                    _react2.default.createElement(
+	                        'span',
+	                        { className: 'fa fa-dot-circle-o' },
+	                        ' ',
+	                        item.unit
+	                    )
+	                )
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'list-text handle-list-item' },
+	                _react2.default.createElement(
+	                    'span',
+	                    null,
+	                    item.name
+	                ),
+	                _react2.default.createElement(
+	                    'span',
+	                    null,
+	                    '(',
+	                    item.description,
+	                    ')'
+	                )
+	            )
+	        )
+	    );
+	};
+
+/***/ },
+/* 666 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Button = __webpack_require__(307);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
+	var _ModalWindow = __webpack_require__(375);
+
+	var _ModalWindow2 = _interopRequireDefault(_ModalWindow);
+
+	var _reactDatepicker = __webpack_require__(411);
+
+	var _reactDatepicker2 = _interopRequireDefault(_reactDatepicker);
+
+	var _moment = __webpack_require__(412);
+
+	var _moment2 = _interopRequireDefault(_moment);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ModalAddEditItem = function (_Component) {
+	    _inherits(ModalAddEditItem, _Component);
+
+	    function ModalAddEditItem(props) {
+	        _classCallCheck(this, ModalAddEditItem);
+
+	        var _this = _possibleConstructorReturn(this, (ModalAddEditItem.__proto__ || Object.getPrototypeOf(ModalAddEditItem)).call(this, props));
+
+	        var _this$props$item = _this.props.item,
+	            name = _this$props$item.name,
+	            price = _this$props$item.price,
+	            date = _this$props$item.date,
+	            description = _this$props$item.description,
+	            unit = _this$props$item.unit;
+
+	        _this.state = { name: name, price: price, description: description, date: (0, _moment2.default)(date), unit: unit };
+
+	        _this.handleCancelClick = _this.handleCancelClick.bind(_this);
+	        _this.handleClickBtn = _this.handleClickBtn.bind(_this);
+	        _this.handleChangePrice = _this.handleChangePrice.bind(_this);
+	        _this.handleChangeUnit = _this.handleChangeUnit.bind(_this);
+	        _this.handleChangeDate = _this.handleChangeDate.bind(_this);
+	        _this.handleChangeName = _this.handleChangeName.bind(_this);
+	        _this.handleChangeDescription = _this.handleChangeDescription.bind(_this);
+	        return _this;
+	    }
+
+	    _createClass(ModalAddEditItem, [{
+	        key: 'handleCancelClick',
+	        value: function handleCancelClick() {
+	            this.props.closeModal();
+	        }
+	    }, {
+	        key: 'handleClickBtn',
+	        value: function handleClickBtn() {
+	            if (this.state.address !== '') this.props.handleItem(this.props.item._id, {
+	                price: this.state.price,
+	                unit: this.state.unit,
+	                date: (0, _moment2.default)(this.state.date).format('L'),
+	                name: this.state.name,
+	                description: this.state.description
+	            });
+	        }
+	    }, {
+	        key: 'handleChangePrice',
+	        value: function handleChangePrice(e) {
+	            this.setState({ price: e.target.value });
+	        }
+	    }, {
+	        key: 'handleChangeUnit',
+	        value: function handleChangeUnit(e) {
+	            this.setState({ unit: e.target.value });
+	        }
+	    }, {
+	        key: 'handleChangeDate',
+	        value: function handleChangeDate(date) {
+	            this.setState({ date: date });
+	        }
+	    }, {
+	        key: 'handleChangeName',
+	        value: function handleChangeName(e) {
+	            this.setState({ name: e.target.value });
+	        }
+	    }, {
+	        key: 'handleChangeDescription',
+	        value: function handleChangeDescription(e) {
+	            this.setState({ description: e.target.value });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _props = this.props,
+	                header = _props.header,
+	                intlMessages = _props.intlMessages,
+	                clients = _props.clients;
+
+
+	            return _react2.default.createElement(
+	                _ModalWindow2.default,
+	                null,
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'modal-header' },
+	                    _react2.default.createElement(
+	                        'h4',
+	                        null,
+	                        header
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'modal-body' },
+	                    _react2.default.createElement(
+	                        'label',
+	                        null,
+	                        intlMessages['title']
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'form-group' },
+	                        _react2.default.createElement('input', { type: 'text',
+	                            className: 'form-control',
+	                            onChange: this.handleChangeName,
+	                            placeholder: intlMessages['title'],
+	                            name: 'name',
+	                            value: this.state.name
+	                        })
+	                    ),
+	                    _react2.default.createElement(
+	                        'label',
+	                        null,
+	                        intlMessages['price']
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'form-group' },
+	                        _react2.default.createElement('input', { type: 'text',
+	                            className: 'form-control',
+	                            onChange: this.handleChangePrice,
+	                            placeholder: intlMessages['price'],
+	                            name: 'price',
+	                            value: this.state.price
+	                        })
+	                    ),
+	                    _react2.default.createElement(
+	                        'label',
+	                        null,
+	                        intlMessages['unit']
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'form-group' },
+	                        _react2.default.createElement('input', { type: 'text',
+	                            className: 'form-control',
+	                            onChange: this.handleChangeUnit,
+	                            placeholder: intlMessages['unit'],
+	                            name: 'unit',
+	                            value: this.state.unit
+	                        })
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'form-group' },
+	                        _react2.default.createElement(
+	                            'label',
+	                            null,
+	                            intlMessages['date']
+	                        ),
+	                        _react2.default.createElement(_reactDatepicker2.default, { className: 'date-input form-control',
+	                            selected: this.state.date,
+	                            onChange: this.handleChangeDate })
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'form-group' },
+	                        _react2.default.createElement('textarea', { type: 'text',
+	                            placeholder: intlMessages['description'],
+	                            rows: '3',
+	                            onChange: this.handleChangeDescription,
+	                            value: this.state.description,
+	                            className: 'form-control' })
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'modal-footer' },
+	                    _react2.default.createElement(_Button2.default, { classSet: 'btn-primary', handleClick: this.handleClickBtn, text: intlMessages['ok'] }),
+	                    _react2.default.createElement(_Button2.default, { classSet: 'btn-danger', handleClick: this.handleCancelClick, text: intlMessages['cancel'] })
+	                )
+	            );
+	        }
+	    }]);
+
+	    return ModalAddEditItem;
+	}(_react.Component);
+
+	ModalAddEditItem.propTypes = {
+	    item: _react.PropTypes.object,
+	    handleItem: _react.PropTypes.func,
+	    closeModal: _react.PropTypes.func
+	};
+
+	exports.default = ModalAddEditItem;
+
+/***/ },
+/* 667 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _reactRedux = __webpack_require__(179);
+
+	var _JobsPage = __webpack_require__(404);
+
+	var _JobsPage2 = _interopRequireDefault(_JobsPage);
+
+	var _jobs = __webpack_require__(668);
+
+	var actions = _interopRequireWildcard(_jobs);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var mapStateToProps = function mapStateToProps(state) {
+	    //state.jobs.searchedjobs ||
+
+	    return {
+	        jobs: state.jobs.jobs,
+	        isModalAddJobOpen: state.jobs.isModalAddJobOpen || false,
+	        isModalEditJobOpen: state.jobs.isModalEditJobOpen || false,
+	        isModalRemoveJobOpen: state.jobs.isModalRemoveJobOpen || false,
+	        job: state.jobs.job || null,
+	        intlMessages: state.intl
+	    };
+	};
+
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	    return {
+	        openModalAddJob: function openModalAddJob() {
+	            dispatch(actions.openModalAddJob());
+	        },
+	        closeModalAddJob: function closeModalAddJob() {
+	            dispatch(actions.closeModalAddJob());
+	        },
+	        addJob: function addJob(job) {
+	            dispatch(actions.addJob(job));
+	        },
+	        openModalEditJob: function openModalEditJob(job) {
+	            dispatch(actions.openModalEditJob(job));
+	        },
+	        closeModalEditJob: function closeModalEditJob() {
+	            dispatch(actions.closeModalEditJob());
+	        },
+	        editJob: function editJob(jobId, job) {
+	            dispatch(actions.editJob(jobId, job));
+	        },
+	        openModalRemoveJob: function openModalRemoveJob(job) {
+	            dispatch(actions.openModalRemoveJob(job));
+	        },
+	        closeModalRemoveJob: function closeModalRemoveJob() {
+	            dispatch(actions.closeModalRemoveJob());
+	        },
+	        removeJob: function removeJob(job) {
+	            dispatch(actions.removeJob(job));
+	        }
+	    };
+	};
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_JobsPage2.default);
+
+/***/ },
+/* 668 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.closeModalRemoveJob = exports.openModalRemoveJob = exports.removeJob = exports.closeModalEditJob = exports.openModalEditJob = exports.editJob = exports.closeModalAddJob = exports.openModalAddJob = exports.addJob = exports.getJobs = undefined;
+
+	var _constants = __webpack_require__(295);
+
+	var types = _interopRequireWildcard(_constants);
+
+	var _fetch = __webpack_require__(378);
+
+	var _fetch2 = _interopRequireDefault(_fetch);
+
+	var _auth = __webpack_require__(396);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	var getJobs = exports.getJobs = function getJobs() {
+	    return function (dispatch) {
+	        _fetch2.default.getJobs(localStorage.getItem('calculator'), function (response) {
+	            dispatch({
+	                type: types.GET_JOBS,
+	                jobs: response.data
+	            });
+	        });
+	    };
+	};
+
+	var addJob = exports.addJob = function addJob(job) {
+	    return function (dispatch) {
+	        dispatch((0, _auth.handleSpinner)(true));
+	        dispatch(closeModalAddJob());
+	        _fetch2.default.addJob(localStorage.getItem('calculator'), job, function (item) {
+	            dispatch((0, _auth.handleSpinner)(false));
+
+	            dispatch({
+	                type: types.ADD_JOB,
+	                job: item.job
+	            });
+	        });
+	    };
+	};
+
+	var openModalAddJob = exports.openModalAddJob = function openModalAddJob() {
+	    return {
+	        type: types.HANDLE_MODAL_ADD_JOB,
+	        isModalAddJobOpen: true
+	    };
+	};
+
+	var closeModalAddJob = exports.closeModalAddJob = function closeModalAddJob() {
+	    return {
+	        type: types.HANDLE_MODAL_ADD_JOB,
+	        isModalAddJobOpen: false
+	    };
+	};
+
+	var editJob = exports.editJob = function editJob(jobId, job) {
+	    job._id = jobId;
+	    return function (dispatch) {
+	        dispatch(closeModalEditJob());
+	        dispatch({
+	            type: types.EDIT_JOB,
+	            job: job
+	        });
+
+	        _fetch2.default.editJob(jobId, job);
+	    };
+	};
+
+	var openModalEditJob = exports.openModalEditJob = function openModalEditJob(job) {
+	    return {
+	        type: types.HANDLE_MODAL_EDIT_JOB,
+	        job: job,
+	        isModalEditJobOpen: true
+	    };
+	};
+
+	var closeModalEditJob = exports.closeModalEditJob = function closeModalEditJob() {
+	    return {
+	        type: types.HANDLE_MODAL_EDIT_JOB,
+	        job: null,
+	        isModalEditJobOpen: false
+	    };
+	};
+
+	var removeJob = exports.removeJob = function removeJob(job) {
+	    return function (dispatch) {
+	        dispatch(closeModalRemoveJob());
+	        dispatch({
+	            type: types.REMOVE_JOB,
+	            job: job
+	        });
+
+	        _fetch2.default.removeJob(localStorage.getItem('calculator'), job._id);
+	    };
+	};
+
+	var openModalRemoveJob = exports.openModalRemoveJob = function openModalRemoveJob(job) {
+	    return {
+	        type: types.HANDLE_MODAL_REMOVE_JOB,
+	        job: job,
+	        isModalRemoveJobOpen: true
+	    };
+	};
+
+	var closeModalRemoveJob = exports.closeModalRemoveJob = function closeModalRemoveJob() {
+	    return {
+	        type: types.HANDLE_MODAL_REMOVE_JOB,
+	        job: null,
+	        isModalRemoveJobOpen: false
+	    };
+	};
+
+/***/ },
+/* 669 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _constants = __webpack_require__(295);
+
+	var types = _interopRequireWildcard(_constants);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	exports.default = function () {
+	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	    var action = arguments[1];
+
+	    switch (action.type) {
+	        case types.GET_JOBS:
+	            return _extends({}, state, { jobs: action.jobs });
+	        case types.ADD_JOB:
+	            return _extends({}, state, { jobs: [].concat(_toConsumableArray(state.jobs), [action.job]) });
+	        case types.HANDLE_MODAL_ADD_JOB:
+	            return _extends({}, state, { isModalAddJobOpen: action.isModalAddJobOpen });
+	        case types.HANDLE_MODAL_EDIT_JOB:
+	            return _extends({}, state, { isModalEditJobOpen: action.isModalEditJobOpen, job: action.job });
+	        case types.EDIT_JOB:
+	            var editedJobs = state.jobs.map(function (job) {
+	                return job._id === action.job._id ? action.job : job;
+	            });
+	            return _extends({}, state, { jobs: [].concat(_toConsumableArray(editedJobs)), job: null });
+	        case types.HANDLE_MODAL_REMOVE_JOB:
+	            return _extends({}, state, { isModalRemoveJobOpen: action.isModalRemoveJobOpen, job: action.job
+	            });
+	        case types.REMOVE_JOB:
+	            var removedJobs = state.jobs.filter(function (item) {
+	                return item._id !== action.job._id;
+	            });
+	            return _extends({}, state, { jobs: [].concat(_toConsumableArray(removedJobs)), job: null });
+	    }
+	    return state;
+	};
 
 /***/ }
 /******/ ]);

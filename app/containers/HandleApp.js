@@ -3,6 +3,7 @@ import App from '../components/App';
 import {getPlaces} from '../actions/places';
 import {getClients} from '../actions/clients';
 import {getWorkers} from '../actions/workers';
+import {getJobs} from '../actions/jobs';
 import {getIntlMessages} from '../actions/intl';
 import { auth, closeAuthModal, openAuthModalToSignIn, openAuthModalToSignUp, signOut } from '../actions/auth';
 
@@ -20,6 +21,9 @@ const mapStateToProps = (state, props) => {
 
 const mapDispactchToProps = (dispatch)=>{
     return{
+        getJobs : ()=>{
+          dispatch(getJobs());
+        },
         getWorkers : ()=>{
             dispatch(getWorkers());
         },

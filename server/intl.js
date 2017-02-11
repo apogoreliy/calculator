@@ -37,7 +37,14 @@ export default {
         "addWorker" : "Add worker",
         "searchWorker" : "Search worker",
         "editWorker" : "Edit worker",
-        "workerSML" : "worker"
+        "workerSML" : "worker",
+        "addJob" : "Add job",
+        "searchJob" : "Search job",
+        "editJob" : "Edit job",
+        "jobSML" : "job",
+        "title" : "Title",
+        "unit" : "Unit",
+        "price" : "Price"
     },
     ru:
     {
@@ -77,6 +84,13 @@ export default {
         "addWorker" : "Добавить работника",
         "searchWorker" : "Поиск работника",
         "editWorker" : "Редактировать работника",
-        "workerSML" : "работника"
+        "workerSML" : "работника",
+        "addJob" : "Добавить деятельность",
+        "searchJob" : "Искать деятельность",
+        "editJob" : "Редактировать деятельность",
+        "jobSML" : "деятельность",
+        "title" : "Название",
+        "unit" : "Единица измерения",
+        "price" : "Стоимость"
     }
 }
