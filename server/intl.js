@@ -5,8 +5,7 @@ export default {
         "workers" : "Workers",
         "jobs" : "Jobs",
         "places" : "Places",
-        "add_place" : "Add place",
-        "search_place" : "Search place",
+        "searchPlace" : "Search place",
         "sign_in" : "Sign In",
         "sign_out" : "Sign Out",
         "sign_up" : "Sign Up",
@@ -30,7 +29,11 @@ export default {
         "date" : "Date",
         "deleteItem" : "Do you really want do remove the ",
         "remove" : "Remove",
-        "placeSML" : "place"
+        "placeSML" : "place",
+        "addClient" : "Add client",
+        "searchClient" : "Search client",
+        "editClient" : "Edit client",
+        "clientSML" : "client"
     },
     ru:
     {
@@ -38,8 +41,7 @@ export default {
         "workers" : "Работники",
         "jobs" : "Виды работ",
         "places" : "Объекты",
-        "add_place" : "Добавить объект",
-        "search_place" : "Поиск объекта",
+        "searchPlace" : "Поиск объекта",
         "sign_in" : "Войти",
         "sign_out" : "Выйти",
         "sign_up" : "Зарегистрироваться",
@@ -55,14 +57,18 @@ export default {
         "cancel" : "Отмена",
         "addPlace" : "Добавить объект",
         "editPlace" : "Редактировать объект",
-        "name" : "Название",
+        "name" : "Имя",
         "clients" : "Заказчики",
         "description" : "Описание",
         "client" : "Заказчик",
         "address" : "Адрес",
         "date" : "Дата",
-        "deleteItem" : "Вы действительно хотите удалить этот ",
+        "deleteItem" : "Вы действительно хотите удалить ",
         "remove" : "Удалить",
-        "placeSML" : "объект"
+        "placeSML" : "объект",
+        "addClient" : "Добавить заказчика",
+        "searchClient" : "Поиск заказчика",
+        "editClient" : "Редактировать заказчика",
+        "clientSML" : "заказчика"
     }
 }

@@ -6,6 +6,7 @@ import Spinner from '../components/common/Spinner';
 class App extends Component {
     componentDidMount() {
         this.props.getPlaces();
+        this.props.getClients();
         this.props.getIntlMessages();
     }
 
@@ -27,6 +28,7 @@ class App extends Component {
 
 App.propTypes = {
     getPlaces: PropTypes.func,
+    getClients : PropTypes.func,
     showAuthModal : PropTypes.bool,
     children : PropTypes.any,
     isSpinner:PropTypes.bool,

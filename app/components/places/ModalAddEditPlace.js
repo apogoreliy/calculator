@@ -28,7 +28,7 @@ class ModalAddEditItem extends Component {
             this.props.handleItem(this.props.item._id, {
                     address: this.state.address,
                     date: moment(this.state.date).format('L'),
-                    client: this.state.client,
+                    client: this.state.client === 0 ? this.props.clients[0]._id : this.state.client,
                     description : this.state.description
                 });
     }
@@ -53,9 +53,9 @@ class ModalAddEditItem extends Component {
         let arr = [];
         for (let j in clients){
             if( clients.hasOwnProperty( j ) ) {
-                let t = clients[j];
+                let c = clients[j];
                 arr.push (
-                    <option key={'client'+t.name} value={t.name}>{t.name}</option>
+                    <option key={'client'+c.name} value={c._id}>{c.name}</option>
                 )
             }
         }

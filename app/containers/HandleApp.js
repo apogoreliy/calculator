@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import App from '../components/App';
 import {getPlaces} from '../actions/places';
-import {getEffects} from '../actions/effects';
+import {getClients} from '../actions/clients';
 import {getIntlMessages} from '../actions/intl';
 import { auth, closeAuthModal, openAuthModalToSignIn, openAuthModalToSignUp, signOut } from '../actions/auth';
 
@@ -21,6 +21,9 @@ const mapDispactchToProps = (dispatch)=>{
     return{
         getPlaces : () => {
             dispatch(getPlaces());
+        },
+        getClients : ()=>{
+            dispatch(getClients());
         },
         getIntlMessages : ()=>{
             dispatch(getIntlMessages());

@@ -1,40 +1,40 @@
 import React, { PropPlaces } from 'react';
 import ButtonCustom from '../common/Button';
-import ListItems from '../common/ListItems';
+import ClientsList from './ClientsList';
 import ModalRemoveItem from '../common/ModalRemoveItem';
-import ModalAddEditItem from './ModalAddEditItem';
+import ModalAddEditClient from './ModalAddEditClient';
 import SearchFilter from '../common/SearchFilter';
 
-const PlacesPage = (props)=>(
+const ClientsPage = (props)=>(
     <div className="container">
         <form className="form-inline">
-            <ButtonCustom classSet="btn-primary" handleClick={props.openModalAddPlace} text={props.intlMessages['add_place']} icon="fa-plus-circle" />
-            <SearchFilter onChange={props.searchPlace} placeholderText={props.intlMessages['search_place']} />
+            <ButtonCustom classSet="btn-primary" handleClick={props.openModalAddClient} text={props.intlMessages['addClient']} icon="fa-plus-circle" />
+            <SearchFilter onChange={props.searchClient} placeholderText={props.intlMessages['searchClient']} />
         </form>
-        <ListItems
+        <ClientsList
             intlMessages={props.intlMessages}
-            items={props.places}
-            openModalEditItem={props.openModalEditPlace}
-            openModalRemoveItem={props.openModalRemovePlace} />
-        {props.isModalAddPlaceOpen && <ModalAddEditItem
-            header={props.intlMessages['addPlace']}
-            handleItem={(initialPlace, place)=>props.addPlace(place)}
-            closeModal={props.closeModalAddPlace}
+            clients={props.clients}
+            openModalEditItem={props.openModalEditClient}
+            openModalRemoveItem={props.openModalRemoveClient} />
+        {props.isModalAddClientOpen && <ModalAddEditClient
+            header={props.intlMessages['addClient']}
+            handleItem={(initialClient, client)=>props.addClient(client)}
+            closeModal={props.closeModalAddClient}
             intlMessages={props.intlMessages}
-            item={{address:'', date: new Date(), client : 0, _id : 0, description: ''}} /> }
-        {props.isModalEditPlaceOpen && <ModalAddEditItem
-            handleItem={props.editPlace}
-            header={props.intlMessages['editPlace']}
-            closeModal={props.closeModalEditPlace}
+            item={{address:'', date: new Date(), name : '', _id : 0, description: ''}} /> }
+        {props.isModalEditClientOpen && <ModalAddEditClient
+            handleItem={props.editClient}
+            header={props.intlMessages['editClient']}
+            closeModal={props.closeModalEditClient}
             intlMessages={props.intlMessages}
-            item={props.place} /> }
-        {props.isModalRemovePlaceOpen && <ModalRemoveItem
-            item={props.place}
-            type ={props.intlMessages['placeSML']}
+            item={props.client} /> }
+        {props.isModalRemoveClientOpen && <ModalRemoveItem
+            item={props.client}
+            type ={props.intlMessages['clientSML']}
             intlMessages={props.intlMessages}
-            removeItem={props.removePlace}
-            closeModal={props.closeModalRemovePlace} /> }
+            removeItem={props.removeClient}
+            closeModal={props.closeModalRemoveClient} /> }
     </div>
 );
 
-export default PlacesPage;
+export default ClientsPage;

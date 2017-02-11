@@ -16,7 +16,7 @@ import CostsPage from './components/costs/CostsPage';
 import JobsPage from './components/jobs/JobsPage';
 import HandlePlacesPage from './containers/HandlePlacesPage';
 import WorkersPage from './components/workers/WorkersPage';
-import ClientsPage from './components/clients/ClientsPage';
+import HandleClientsPage from './containers/HandleClientsPage';
 
 //import Perf from 'react-addons-perf';
 
@@ -41,7 +41,7 @@ render(
                     <Route path="jobs" component={RequireAuth(JobsPage)} />
                     <Route path="places" component={RequireAuth(HandlePlacesPage)} />
                     <Route path="workers" component={RequireAuth(WorkersPage)} />
-                    <Route path="clients" component={RequireAuth(ClientsPage)} />
+                    <Route path="clients" component={RequireAuth(HandleClientsPage)} />
                 </Route>
             </Router>
         </Provider>

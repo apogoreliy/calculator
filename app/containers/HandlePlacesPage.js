@@ -11,7 +11,8 @@ const mapStateToProps = (state)=>{
         isModalEditPlaceOpen : state.places.isModalEditPlaceOpen || false,
         isModalRemovePlaceOpen : state.places.isModalRemovePlaceOpen || false,
         place : state.places.place || null,
-        intlMessages : state.intl
+        intlMessages : state.intl,
+        clients : state.clients.clients
     }
 };
 

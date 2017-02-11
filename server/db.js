@@ -141,4 +141,68 @@ module.exports = {
             });
         });
     },
+
+    getClients: function(token, filter){
+        const that = this;
+        return new Promise(function(resolve, reject) {
+            that.connection().then(function(db) {
+                const collection = db.collection('clients');
+                let userId = that.getUserByToken(token)['id'];
+                let search = filter ? {userId, name: { $regex : `${filter}`, $options: 'i'}} : {userId};
+
+                collection.find(search, {userId:0}).toArray(function(err, items) {
+                    if(err) {
+                        reject(err)
+                    }
+                    else{
+                        let clients = [];
+                        for(let i in items){
+                            items[i].client._id = items[i]._id;
+                            clients.push(items[i].client);
+                        }
+                        resolve(clients);
+                    }
+                });
+            });
+        });
+    },
+
+    addClient: function(token, client){
+        const that = this;
+        return new Promise(function(resolve, reject) {
+            that.connection().then(function(db) {
+                let userId = that.getUserByToken(token)['id'];
+                db.collection('clients').insertOne(
+                    {client, userId},
+                    function(err, item) {
+                        if(err) {reject(item)}
+                        else{
+                            client._id = item.ops[0]._id;
+                            resolve({client});
+                        }
+                    }
+                );
+            });
+        });
+    },
+
+    editClient: function(clientId, client){
+        const that = this;
+        return new Promise(function(resolve, reject) {
+            that.connection().then(function(db) {
+                db.collection('clients').updateOne({_id : ObjectID(clientId)}, {$set: {client}}, function(err) {if(err) reject(err);});
+            });
+        });
+    },
+
+    removeClient : function(token, client){
+        const that = this;
+        return new Promise(function(resolve, reject) {
+            that.connection().then(function(db) {
+                db.collection('clients').deleteOne({_id : ObjectID(client)}, function(err) {
+                    if(err) reject(err);
+                });
+            });
+        });
+    },
 };

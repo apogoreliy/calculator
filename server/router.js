@@ -65,4 +65,33 @@ module.exports = (app) =>{
             console.error('The promise was rejected', err, err.stack);
         });
     });
+
+    app.post('/get_clients', (req, res) => {
+        DB.getClients(req.body.token).then(function(items) {
+            res.json(items);
+        }, function(err) {
+            console.error('The promise was rejected', err, err.stack);
+        });
+    });
+
+    app.post('/add_client', (req, res) => {
+        DB.addClient(req.body.token, req.body.client).then(function(item) {
+            res.json(item);
+        })
+            .catch(function(err) {
+                console.error('The promise was rejected', err, err.stack);
+            });
+    });
+
+    app.post('/edit_client', (req) => {
+        DB.editClient(req.body.clientId, req.body.client).catch(function(err) {
+            console.error('The promise was rejected', err, err.stack);
+        });
+    });
+
+    app.post('/remove_client', (req) => {
+        DB.removeClient(req.body.token, req.body.client).catch(function(err) {
+            console.error('The promise was rejected', err, err.stack);
+        });
+    });
 };

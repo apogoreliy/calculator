@@ -56,5 +56,37 @@ export default {
             .catch(err => {
                 console.log('err', err)
             });
+    },
+
+    getClients(token, callback){
+        axios.post(`${ROOT_URL}/get_clients`, {token})
+            .then(response => {
+                callback(response);
+            })
+            .catch(err => {
+                console.log('err', err)
+            });
+    },
+
+    addClient (token, client, callback){
+        axios.post(`${ROOT_URL}/add_client`, {token, client})
+            .then(response => {
+                callback(response.data);
+            })
+            .catch(err => {
+                console.log('err', err)
+            });
+    },
+
+    editClient (clientId, client){
+        axios.post(`${ROOT_URL}/edit_client`, {clientId, client})
+            .catch(err => { console.log('err', err) });
+    },
+
+    removeClient(token, client){
+        axios.post(`${ROOT_URL}/remove_client`, {token, client})
+            .catch(err => {
+                console.log('err', err)
+            });
     }
 };
