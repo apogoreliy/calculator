@@ -5,8 +5,7 @@ import places from './places';
 import clients from './clients';
 import workers from './workers';
 import jobs from './jobs';
-
-import effects from './effects';
+import costs from './costs';
 
 export default combineReducers({
     auth,
@@ -14,5 +13,6 @@ export default combineReducers({
     places,
     clients,
     workers,
-    jobs
+    jobs,
+    costs
 });

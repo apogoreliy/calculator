@@ -49,18 +49,13 @@ export const HANDLE_MODAL_ADD_JOB = 'HANDLE_MODAL_ADD_JOB';
 export const HANDLE_MODAL_EDIT_JOB = 'HANDLE_MODAL_EDIT_JOB';
 export const HANDLE_MODAL_REMOVE_JOB = 'HANDLE_MODAL_REMOVE_JOB';
 
-// types
-export const UPDATE_TYPE_OF_EFFECTS = 'updateTypeOfEffects';
-export const SEARCH_FILTER_TYPE = 'searchFilterType';
-
-// effects
-export const GET_EFFECTS = 'getEffects';
-export const ADD_EFFECT = 'addEffect';
-export const EDIT_EFFECT = 'editEffect';
-export const REMOVE_EFFECT = 'removeEffect';
-export const HANDLE_MODAL_ADD_EFFECT  = 'handleModalAddEffect';
-export const HANDLE_MODAL_EDIT_EFFECT = 'handleModalEditEffect';
-export const HANDLE_MODAL_REMOVE_EFFECT = 'handleModalRemoveEffect';
-export const FILTER_EFFECTS = 'filterEffects';
-export const COUNT_EFFECTS_TIME = 'countEffectsTime';
-export const REMOVE_EFFECTS_BY_TYPE = 'removeEffectsByType';
+// costs
+export const GET_COSTS = 'GET_COSTS';
+export const ADD_COST = 'ADD_COST';
+export const EDIT_COST = 'EDIT_COST';
+export const REMOVE_COST = 'REMOVE_COST';
+export const HANDLE_MODAL_ADD_COST = 'HANDLE_MODAL_ADD_COST';
+export const HANDLE_MODAL_EDIT_COST = 'HANDLE_MODAL_EDIT_COST';
+export const HANDLE_MODAL_REMOVE_COST = 'HANDLE_MODAL_REMOVE_COST';
+export const HANDLE_MODAL_SELECT_COST = 'HANDLE_MODAL_SELECT_COST';
+export const SELECT_COST = 'SELECT_COST';

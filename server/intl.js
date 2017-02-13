@@ -44,11 +44,24 @@ export default {
         "jobSML" : "job",
         "title" : "Title",
         "unit" : "Unit",
-        "price" : "Price"
+        "price" : "Price",
+        "addCost" : "Add cost",
+        "searchCost" : "Search cost",
+        "editCost" : "Edit cost",
+        "costSML" : "cost",
+        "costType" : "Cost's type",
+        "place" : "Place",
+        "imprest" : "Imprest",
+        "salary" : "Salary",
+        "stuff" : "Stuff",
+        "prepayment" : "Prepayment",
+        "total" : "Total",
+        "worker" : "Worker",
+        "selectCost" : "Select cost"
     },
     ru:
     {
-        "costs" : "Расходы",
+        "costs" : "Платежи",
         "workers" : "Работники",
         "jobs" : "Виды работ",
         "places" : "Объекты",
@@ -91,6 +104,19 @@ export default {
         "jobSML" : "деятельность",
         "title" : "Название",
         "unit" : "Единица измерения",
-        "price" : "Стоимость"
+        "price" : "Стоимость",
+        "addCost" : "Добавить платеж",
+        "searchCost" : "Искать платеж",
+        "editCost" : "Редактировать платеж",
+        "costSML" : "платеж",
+        "costType" : "Вид платежа",
+        "place": "Объект",
+        "imprest" : "Аванс",
+        "salary" : "Зарплата",
+        "stuff" : "Материал",
+        "prepayment" : "Предоплата",
+        "total" : "Сумма",
+        "worker" : "Работник",
+        "selectCost" : "Выбрать платеж"
     }
 }

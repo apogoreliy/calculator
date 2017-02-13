@@ -152,5 +152,37 @@ export default {
             .catch(err => {
                 console.log('err', err)
             });
+    },
+
+    getCosts(token, callback){
+        axios.post(`${ROOT_URL}/get_costs`, {token})
+            .then(response => {
+                callback(response);
+            })
+            .catch(err => {
+                console.log('err', err)
+            });
+    },
+
+    addCost (token, cost, callback){
+        axios.post(`${ROOT_URL}/add_cost`, {token, cost})
+            .then(response => {
+                callback(response.data);
+            })
+            .catch(err => {
+                console.log('err', err)
+            });
+    },
+
+    editCost (costId, cost){
+        axios.post(`${ROOT_URL}/edit_cost`, {costId, cost})
+            .catch(err => { console.log('err', err) });
+    },
+
+    removeCost(token, cost){
+        axios.post(`${ROOT_URL}/remove_cost`, {token, cost})
+            .catch(err => {
+                console.log('err', err)
+            });
     }
 };

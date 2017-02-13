@@ -98,10 +98,3 @@ export const closeModalRemovePlace = ()=>{
         isModalRemovePlaceOpen : false
     }
 };
-
-export const searchType = searchText=>{
-    return {
-        type : types.SEARCH_FILTER_TYPE,
-        searchText
-    }
-};

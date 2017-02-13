@@ -9,6 +9,7 @@ class App extends Component {
         this.props.getClients();
         this.props.getWorkers();
         this.props.getJobs();
+        this.props.getCosts();
         this.props.getIntlMessages();
     }
 
@@ -29,6 +30,7 @@ class App extends Component {
 }
 
 App.propTypes = {
+    getCosts : PropTypes.func,
     getIntlMessages : PropTypes.func,
     getJobs : PropTypes.func,
     getWorkers : PropTypes.func,

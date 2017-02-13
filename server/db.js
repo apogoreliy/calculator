@@ -331,4 +331,75 @@ module.exports = {
             });
         });
     },
+
+    getCosts: function(token, filter){
+        const that = this;
+        return new Promise(function(resolve, reject) {
+            that.connection().then(function(db) {
+                let userId = that.getUserByToken(token)['id'];
+                let search = filter ? {userId, name: { $regex : `${filter}`, $options: 'i'}} : {userId};
+
+                db.collection('costs').find(search, {userId:0}).toArray(function(err, items) {
+                    if(err) {
+                        reject(err)
+                    }
+                    else{
+                        let costs = [];
+                        for(let i in items){
+                            items[i].cost._id = items[i]._id;
+                            costs.push(items[i].cost);
+                        }
+
+                        db.collection('cost_types').find({}).toArray(function(err, items) {
+                            if(err) {
+                                reject(err)
+                            }
+                            else{
+                                resolve({costs, cost_types: items});
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    },
+
+    addCost: function(token, cost){
+        const that = this;
+        return new Promise(function(resolve, reject) {
+            that.connection().then(function(db) {
+                let userId = that.getUserByToken(token)['id'];
+                db.collection('costs').insertOne(
+                    {cost, userId},
+                    function(err, item) {
+                        if(err) {reject(item)}
+                        else{
+                            cost._id = item.ops[0]._id;
+                            resolve({cost});
+                        }
+                    }
+                );
+            });
+        });
+    },
+
+    editCost: function(costId, cost){
+        const that = this;
+        return new Promise(function(resolve, reject) {
+            that.connection().then(function(db) {
+                db.collection('costs').updateOne({_id : ObjectID(costId)}, {$set: {cost}}, function(err) {if(err) reject(err);});
+            });
+        });
+    },
+
+    removeCost: function(token, cost){
+        const that = this;
+        return new Promise(function(resolve, reject) {
+            that.connection().then(function(db) {
+                db.collection('costs').deleteOne({_id : ObjectID(cost)}, function(err) {
+                    if(err) reject(err);
+                });
+            });
+        });
+    }
 };

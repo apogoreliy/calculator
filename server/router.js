@@ -162,4 +162,38 @@ module.exports = (app) =>{
                 console.error('The promise was rejected', err, err.stack);
             });
     });
+
+    app.post('/get_costs', (req, res) => {
+        DB.getCosts(req.body.token)
+            .then(function(items) {
+                res.json(items);
+            })
+            .catch(function(err) {
+                console.error('The promise was rejected', err, err.stack);
+            });
+    });
+
+    app.post('/add_cost', (req, res) => {
+        DB.addCost(req.body.token, req.body.cost)
+            .then(function(item) {
+                res.json(item);
+            })
+            .catch(function(err) {
+                console.error('The promise was rejected', err, err.stack);
+            });
+    });
+
+    app.post('/edit_cost', (req) => {
+        DB.editCost(req.body.costId, req.body.cost)
+            .catch(function(err) {
+                console.error('The promise was rejected', err, err.stack);
+            });
+    });
+
+    app.post('/remove_cost', (req) => {
+        DB.removeCost(req.body.token, req.body.cost)
+            .catch(function(err) {
+                console.error('The promise was rejected', err, err.stack);
+            });
+    });
 };
